@@ -7,7 +7,18 @@ var ReactTransitionGroup = React.addons.TransitionGroup;
 require('normalize.css');
 require('../styles/main.css');
 
-var imageURL = require('../images/yeoman.png');
+//imagesJSON
+var imageDatas = require('../data/iamgesDatas.json')
+// var imageURL = require('../images/yeoman.png');
+
+//获取图片信息数组
+imageDatas = (function genImageURL(imageDataArr){
+	for(var i=0,len=imageDataArr.length;i<len;i++){
+		var singleImageData = imageDataArr[i];
+		singleImageData.imageURL = require('../images/'+ singleImageData.fileName)
+		imageDataArr[i] = singleImageData;
+	}
+})(imageDatas)
 
 var ReactDemoApp = React.createClass({
   render: function() {
