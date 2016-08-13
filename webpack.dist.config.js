@@ -54,10 +54,10 @@ module.exports = {
       loader: 'babel-loader'
     }, {
       test: /\.css$/,
-      loader: 'style-loader!css-loader!aotuprefixer-loader?{browser:["last 2 version"]}'
+      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}'
     }, {
-      test: /\.sass/,
-      loader: 'style-loader!css-loader!aotuprefixer-loader?{browser:["last 2 version"]}!sass-loader?outputStyle=expanded&indentedSyntax'
+      test: /\.scss/,
+      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader'
     }, {
       test:/\.json$/,
       loader:'json-loader'
