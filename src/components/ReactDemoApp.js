@@ -283,7 +283,7 @@ var ReactDemoApp = React.createClass({
 		this.Constant.vPosRange.topY[1] = halfStageH - halfImgH * 3;
 		this.Constant.vPosRange.x[0] = halfStageW - imgW;
 		this.Constant.vPosRange.x[1] = halfStageW;
-		this.rearrange(3);
+		this.rearrange(0);
 	},
   render: function() {
 		var controllerUnits = [];
