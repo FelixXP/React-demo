@@ -50,6 +50,7 @@ var ControllerUnits = React.createClass({
 var ImgFigure = React.createClass({
 
 	handleClick: function(e){
+		console.log(this.props.arrange.isCenter);
 		if (this.props.arrange.isCenter) {
 			this.props.inverse();
 		}else {
