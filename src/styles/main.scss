@@ -1,0 +1,131 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+html,body{
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+}
+
+.content{
+	width: 100%;
+	height: 100%;
+}
+
+/* stage -- start */
+.stage{
+	position: relative;
+	width: 100%;
+	height: 600px;
+}
+/* stage -- end */
+
+
+/* image -- start */ 
+.img-sec{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #DDD;
+
+	@at-root{
+		.img-figure{
+			position: absolute;
+			width: 256px;
+			height: 286px;
+			margin: 0;
+			padding: 30px;
+
+			background-color: #FFF;
+
+			box-sizing: border-box;
+			transform-origin: 0 50% 0;
+	    transform-style: preserve-3d;
+	    transition: all .6s ease-in-out;
+	    perspective: 60px;
+	    cursor: pointer;
+
+			img{
+				width: 100%;
+				height: 85%;
+			}
+
+			.img-back{
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    padding: 50px 40px;
+		    overflow: auto;
+		    color: #a7a0a2;
+		    font-size: 22px;
+		    line-height: 1.25;
+		    text-align: left;
+		    background-color: #fff;
+		    box-sizing: border-box;
+		    transform: rotateY(180deg);
+		    -webkit-backface-visibility: hidden;
+		    backface-visibility: hidden;
+			}
+		}
+		.is-inverse{
+	    transform: translate(256px) rotateY(180deg);
+		}
+		figcaption{
+			text-align: center;
+
+			.img-title{
+				margin: 20px 0;
+
+				color:#A7A0A2;
+
+				font-size: 16px;
+			}
+		}
+	}
+}
+/* image -- end */ 
+
+
+/* controller -- start */
+.controller-nav{
+	position: absolute;
+	left: 0;
+	bottom:30px;
+	z-index: 101;
+
+	width: 100%;
+
+	text-align: center;
+
+	@at-root{
+		.controller-unit{
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			margin: 0 5px;
+			text-align: center;
+			cursor: pointer;
+			background-color: #AAA;
+			border-radius: 15px;
+			transform: scale(0.5);
+			vertical-align: middle;
+			transition: all 0.6s ease-in-out;
+
+			&.is-center{
+				transform: scale(1);
+
+			}
+			&.is-inverse{
+				background-color: #555;
+				transform: rotateY(180deg);
+			}
+		}
+	}
+}
+
+/* controller -- end */
