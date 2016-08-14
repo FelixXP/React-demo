@@ -1,3 +1,8 @@
+@font-face{
+	font-family: "icon-arrow";
+  src: url('../font/icon/iconfont.woff') format('woff'), url('../font/icon/iconfont.svg#iconfont') format('svg');
+}
+
 *{
 	padding: 0;
 	margin: 0;
@@ -118,6 +123,13 @@ html,body{
 
 			&.is-center{
 				transform: scale(1);
+				&::after{
+					color: #FFF;
+					font-family: "icon-arrow";
+					line-height: 30px;
+					content: "\e61c";
+					-webkit-font-smoothing: antialiased;
+				}
 
 			}
 			&.is-inverse{

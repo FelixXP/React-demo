@@ -67,7 +67,7 @@ var ImgFigure = React.createClass({
 		}
 		//如果已经设置非零旋转角度
 		if(this.props.arrange.rotate){
-			(['mozTransform', 'webkitTransform', 'msTransform', 'transform'].forEach(function(value){
+			(['MozTransform', 'WebkitTransform', 'MsTransform', 'transform'].forEach(function(value){
 				styleObj[value] = 'rotate(' + this.props.arrange.rotate + 'deg)';
 			}.bind(this)));
 		}
