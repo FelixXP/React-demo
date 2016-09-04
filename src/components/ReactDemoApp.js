@@ -22,6 +22,25 @@ imageDatas = (function genImageURL(imageDataArr){
 	return imageDataArr;
 })(imageDatas);
 
+
+/**
+ * 获取指定区间的随机值
+ * @param  {Number} low    [最小值]
+ * @param  {Number} height [最大值]
+ * @return {Number}        [随机值]
+ */
+function getRangeRandom(low, height){
+	return Math.ceil(Math.random() * (height - low) + low);
+}
+
+/**
+ * 获取0-30度的任意正负值
+ * @return {String}
+ */
+function get30DegRandom(){
+	return (( Math.random() > 0.5 ? '' : '-' ) + Math.random() * 30);
+}
+
 //控制组件
 var ControllerUnits = React.createClass({
 	handleClick: function(e){
@@ -95,24 +114,6 @@ var ImgFigure = React.createClass({
 	}
 });
 
-/**
- * 获取指定区间的随机值
- * @param  {Number} low    [最小值]
- * @param  {Number} height [最大值]
- * @return {Number}        [随机值]
- */
-function getRangeRandom(low, height){
-	return Math.ceil(Math.random() * (height - low) + low);
-}
-
-/**
- * 获取0-30度的任意正负值
- * @return {String}
- */
-function get30DegRandom(){
-	return (( Math.random() > 0.5 ? '' : '-' ) + Math.random() * 30);
-}
-
 //main
 var ReactDemoApp = React.createClass({
 	Constant: {
@@ -170,56 +171,56 @@ var ReactDemoApp = React.createClass({
 				topImgSpliceIndex = 0,
 				imgsArrangeCenterArr = imgsArrangeArr.splice(centerIndex, 1);
 
-				//居中centerIndex的图片
-				imgsArrangeCenterArr[0] = {
-					pos: centerPos,
-					rotate: 0,
-					isCenter: true
-				};
+		//居中centerIndex的图片
+		imgsArrangeCenterArr[0] = {
+			pos: centerPos,
+			rotate: 0,
+			isCenter: true
+		};
 
-				//取出上侧图片状态信息
-				topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
-				imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
+		//取出上侧图片状态信息
+		topImgSpliceIndex = Math.ceil(Math.random() * (imgsArrangeArr.length - topImgNum));
+		imgsArrangeTopArr = imgsArrangeArr.splice(topImgSpliceIndex, topImgNum);
 
-				//布局上侧图片信息
-				imgsArrangeTopArr.forEach(function(value, index){
-					imgsArrangeTopArr[index] = {
-						pos: {
-							top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
-							left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
-						},
-						rotate: get30DegRandom(),
-						isCenter: false
-					};
-				});
+		//布局上侧图片信息
+		imgsArrangeTopArr.forEach(function(value, index){
+			imgsArrangeTopArr[index] = {
+				pos: {
+					top: getRangeRandom(vPosRangeTopY[0], vPosRangeTopY[1]),
+					left: getRangeRandom(vPosRangeX[0], vPosRangeX[1])
+				},
+				rotate: get30DegRandom(),
+				isCenter: false
+			};
+		});
 
-				//布局左右两侧的图片
-				for (var i = imgsArrangeArr.length - 1, k = i / 2; i >= 0; i--) {
-					var hPosRangeLORX = null;
-					if (i < k) {//左边
-						hPosRangeLORX = hPosRangeLeftLeftSecX;
-					} else {//右边
-						hPosRangeLORX = hPosRangeRightLeftSecX;
-					}
+		//布局左右两侧的图片
+		for (var i = imgsArrangeArr.length - 1, k = i / 2; i >= 0; i--) {
+			var hPosRangeLORX = null;
+			if (i < k) {//左边
+				hPosRangeLORX = hPosRangeLeftLeftSecX;
+			} else {//右边
+				hPosRangeLORX = hPosRangeRightLeftSecX;
+			}
 
-					imgsArrangeArr[i] = {
-						pos: {
-							top: getRangeRandom(hPosRangeY[0], hPosRangeY[1]),
-							left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1])
-						},
-						rotate: get30DegRandom(),
-						isCenter: false
-					};
-				}
-				if (imgsArrangeTopArr && imgsArrangeTopArr[0]) {
-					imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
-				}
+			imgsArrangeArr[i] = {
+				pos: {
+					top: getRangeRandom(hPosRangeY[0], hPosRangeY[1]),
+					left: getRangeRandom(hPosRangeLORX[0], hPosRangeLORX[1])
+				},
+				rotate: get30DegRandom(),
+				isCenter: false
+			};
+		}
+		if (imgsArrangeTopArr && imgsArrangeTopArr[0]) {
+			imgsArrangeArr.splice(topImgSpliceIndex, 0, imgsArrangeTopArr[0]);
+		}
 
-				imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
+		imgsArrangeArr.splice(centerIndex, 0, imgsArrangeCenterArr[0]);
 
-				this.setState({
-					imgsArrangeArr: imgsArrangeArr
-				});
+		this.setState({
+			imgsArrangeArr: imgsArrangeArr
+		});
 
 	},
 
@@ -289,6 +290,7 @@ var ReactDemoApp = React.createClass({
   render: function() {
 		var controllerUnits = [];
 		var imgFigures = [];
+		//初始化图片状态信息数组
 		imageDatas.forEach(function(value, index){
 			if (!this.state.imgsArrangeArr[index]) {
 				this.state.imgsArrangeArr[index] = {
